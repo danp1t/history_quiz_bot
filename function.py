@@ -1,6 +1,6 @@
 import telebot
 
-bot = telebot.TeleBot("6480240193:AAFsuxAPea8LfE_3gRnwH8Eo_zeD038VNc0")
+bot = telebot.TeleBot("6743483800:AAEgeLSXH33LyvBNFhqsiqr64lZ6VWZfMpw")
 
 def welcome(message):
         photo = open("photo/main.jpeg", 'rb')
@@ -11,7 +11,9 @@ def reaction_on_text(message):
                      "Привет! Я бот, созданный для проведения викторины по военной истории. К сожалению, я не могу распознавать сообщения и отвечать на них. Однако, я готов задавать вам интересные вопросы и жду ваших ответов. Давайте начнем!",
                      reply_markup=create_start_markup())
 
+
 def reaction_lets_start(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Первый вопрос будет касаться военной техники.
 Данное орудие предназначено для навесной стрельбы по открытым целям, поэтому на боевой позиции у этой пушки ствол поднят вверх. Как называется это орудие?
 
@@ -19,12 +21,14 @@ def reaction_lets_start(call):
                     reply_markup=create_markup_start_question())
 
 def reaction_true1(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/1.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
 Ответ: Мортира — артиллерийское орудие с коротким стволом для навесной стрельбы. В Россию термин «мортира» проник при Петре I, когда артиллерийские орудия разделили на длинноствольные (пушки), средние (гаубицы) и короткоствольные (мортиры).''', reply_markup=create_markup_test2())
 
 def reaction_no_true1(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/1.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -38,6 +42,7 @@ def create_markup_test2():
 
 #Вопрос 2
 def reaction_question2(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Второй вопрос.
     
 Какой массы были ядра пушки Инрог?""",
@@ -53,12 +58,14 @@ def create_markup_start_question2():
     return markup
 
 def reaction_true2(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/2.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
 Ответ: Железные ядра весили примерно 27 кг.''', reply_markup=create_markup_test3())
 
 def reaction_no_true2(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/2.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -72,6 +79,7 @@ def create_markup_test3():
 
 #Вопрос 3
 def reaction_question3(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Третий вопрос.
 
 Кто сказал следующие слова: «Пушки – ключ к городу»?""",
@@ -89,6 +97,7 @@ def create_markup_start_question3():
 
 
 def reaction_true3(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/3.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -96,6 +105,7 @@ def reaction_true3(call):
 
 
 def reaction_no_true3(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/3.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -110,6 +120,7 @@ def create_markup_test4():
 
 #Вопрос 4
 def reaction_question4(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Четвертый вопрос.
 
 Для уничтожения каких целей использовалась 280-мм береговая пушка?""",
@@ -127,6 +138,7 @@ def create_markup_start_question4():
 
 
 def reaction_true4(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/4.png", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -134,6 +146,7 @@ def reaction_true4(call):
 
 
 def reaction_no_true4(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/4.png", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -148,6 +161,7 @@ def create_markup_test5():
 
 #Вопрос 5
 def reaction_question5(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Пятый вопрос.
 
 Почему средневековые орудия имели такие толстые стенки ствола?""",
@@ -165,6 +179,7 @@ def create_markup_start_question5():
 
 
 def reaction_true5(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/5.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -172,6 +187,7 @@ def reaction_true5(call):
 
 
 def reaction_no_true5(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/5.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -186,6 +202,7 @@ def create_markup_test6():
 
 #Вопрос 6
 def reaction_question6(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Шестой вопрос.
 
 Орудия какого мастера конца XVI – начала XVII в сравнительно большом количестве представлены в музее?""",
@@ -203,6 +220,7 @@ def create_markup_start_question6():
 
 
 def reaction_true6(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/6.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -210,6 +228,7 @@ def reaction_true6(call):
 
 
 def reaction_no_true6(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/6.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -224,6 +243,7 @@ def create_markup_test7():
 
 #Вопрос 7
 def reaction_question7(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Седьмой вопрос.
 
 Про какое орудие во время его испытаний сказали: «сии инвестиции в настоящем употреблении полезны быть не могут»?""",
@@ -241,6 +261,7 @@ def create_markup_start_question7():
 
 
 def reaction_true7(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/7.png", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -248,6 +269,7 @@ def reaction_true7(call):
 
 
 def reaction_no_true7(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/7.png", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -262,6 +284,7 @@ def create_markup_test8():
 
 #8 вопрос
 def reaction_question8(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Восьмой вопрос.
 
 В каком веке появилось первое русское артиллерийское орудие с нарезным стволом?""",
@@ -279,6 +302,7 @@ def create_markup_start_question8():
 
 
 def reaction_true8(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/8.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -286,6 +310,7 @@ def reaction_true8(call):
 
 
 def reaction_no_true8(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/8.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -300,6 +325,7 @@ def create_markup_test9():
 
 #9 вопрос
 def reaction_question9(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Девятый вопрос.
 
 Чем хороша пуша с нарезным каналом ствола?""",
@@ -317,6 +343,7 @@ def create_markup_start_question9():
 
 
 def reaction_true9(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/9.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -324,6 +351,7 @@ def reaction_true9(call):
 
 
 def reaction_no_true9(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/9.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -337,6 +365,7 @@ def create_markup_test10():
     return markup
 #10 вопрос
 def reaction_question10(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Деcятый вопрос.
 
 Почему немецкие солдаты называли 76-мм пушку «Ратш-бум»?""",
@@ -354,6 +383,7 @@ def create_markup_start_question10():
 
 
 def reaction_true10(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/10.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -361,6 +391,7 @@ def reaction_true10(call):
 
 
 def reaction_no_true10(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/10.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -375,6 +406,7 @@ def create_markup_test11():
 
 #11 вопрос
 def reaction_question11(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Одиннацатый вопрос.
 
 Как называлась пушка, подаренная в детстве Петру I его отцом?""",
@@ -392,6 +424,7 @@ def create_markup_start_question11():
 
 
 def reaction_true11(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/11.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
 
@@ -399,6 +432,7 @@ def reaction_true11(call):
 
 
 def reaction_no_true11(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/11.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
 
@@ -407,15 +441,382 @@ def reaction_no_true11(call):
 
 def create_markup_test12():
     markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test12')
+    markup.add(answer1)
+    return markup
+
+#12 вопрос
+def reaction_question12(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Двенацатый вопрос.
+
+Кто изобрел принцип работы радио?""",
+                     reply_markup=create_markup_start_question12())
+
+
+def create_markup_start_question12():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Александр Греков", callback_data='no_true12')
+    answer2 = telebot.types.InlineKeyboardButton("Гульельмо Маркони", callback_data='no_true12')
+    answer3 = telebot.types.InlineKeyboardButton("Александр Попов", callback_data='true12')
+    answer4 = telebot.types.InlineKeyboardButton("Лев Термен", callback_data='no_true12')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true12(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/12.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: 7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио. ''', reply_markup=create_markup_test13())
+
+
+def reaction_no_true12(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/12.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: 7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио. ''', reply_markup=create_markup_test13())
+
+
+def create_markup_test13():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test13')
+    markup.add(answer1)
+    return markup
+
+#13 вопрос
+def reaction_question13(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Тринадцатый вопрос.
+
+В каком году в России началось регулярное радиовещание?""",
+                     reply_markup=create_markup_start_question13())
+
+
+def create_markup_start_question13():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("1924", callback_data='true13')
+    answer2 = telebot.types.InlineKeyboardButton("1922", callback_data='no_true13')
+    answer3 = telebot.types.InlineKeyboardButton("1919", callback_data='no_true13')
+    answer4 = telebot.types.InlineKeyboardButton("1916", callback_data='no_true13')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true13(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/13.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.''', reply_markup=create_markup_test14())
+
+
+def reaction_no_true13(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/13.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.''', reply_markup=create_markup_test14())
+
+
+def create_markup_test14():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test14')
+    markup.add(answer1)
+    return markup
+
+#14 вопрос
+def reaction_question14(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Четырнадцатый вопрос.
+
+Кто был главным человеком (нарком) в войсках связи СССР во времена Великой Отечественной войны?""",
+                     reply_markup=create_markup_start_question14())
+
+
+def create_markup_start_question14():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Иван Терентьевич Пересыпкин", callback_data='true14')
+    answer2 = telebot.types.InlineKeyboardButton("Матвей Давыдович Берман", callback_data='no_true14')
+    answer3 = telebot.types.InlineKeyboardButton("Константин Яковлевич Сергейчук", callback_data='no_true14')
+    answer4 = telebot.types.InlineKeyboardButton("Иннокентий Андреевич Халепский", callback_data='no_true14')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true14(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/14.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)''', reply_markup=create_markup_test15())
+
+
+def reaction_no_true14(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/14.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)''', reply_markup=create_markup_test15())
+
+
+def create_markup_test15():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test15')
+    markup.add(answer1)
+    return markup
+#15 вопрос
+def reaction_question15(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Пятнадцатый вопрос.
+
+Какая была дальность связи в телеграфном режиме у корабельного радиопередатчика образца 1938 года «Шквал»""",
+                     reply_markup=create_markup_start_question15())
+
+
+def create_markup_start_question15():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("500 км", callback_data='no_true15')
+    answer2 = telebot.types.InlineKeyboardButton("750 км", callback_data='no_true15')
+    answer3 = telebot.types.InlineKeyboardButton("1000 км", callback_data='true15')
+    answer4 = telebot.types.InlineKeyboardButton("600 км", callback_data='no_true15')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true15(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/15.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: 1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.''', reply_markup=create_markup_test16())
+
+
+def reaction_no_true15(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/15.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: 1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.''', reply_markup=create_markup_test16())
+
+
+def create_markup_test16():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test16')
+    markup.add(answer1)
+    return markup
+
+#16 вопрос
+def reaction_question16(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Шестнадцатый вопрос.
+
+Какой подвиг связистов в период блокады Ленинграда был совершен?""",
+                     reply_markup=create_markup_start_question16())
+
+
+def create_markup_start_question16():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Проведение связи с Москвой", callback_data='no_true16')
+    answer2 = telebot.types.InlineKeyboardButton("Обновленные версии радиостанций", callback_data='no_true16')
+    answer3 = telebot.types.InlineKeyboardButton("Прокладка морского кабеля по дну Ладожского озера", callback_data='true16')
+    answer4 = telebot.types.InlineKeyboardButton("Улучшенная версия шифрования связи", callback_data='no_true16')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true16(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/16.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады''', reply_markup=create_markup_test17())
+
+
+def reaction_no_true16(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/16.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады''', reply_markup=create_markup_test17())
+
+
+def create_markup_test17():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test17')
+    markup.add(answer1)
+    return markup
+
+#17 вопрос
+def reaction_question17(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Семнадцатый вопрос.
+
+Как назывался длиннодревковый боевой топор с лезвием в форме полумесяца, который стоял на вооружении русской пехоты и конных воинов в XV – XVII  веках.""",
+                     reply_markup=create_markup_start_question17())
+
+
+def create_markup_start_question17():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Алебарда", callback_data='no_true17')
+    answer2 = telebot.types.InlineKeyboardButton("Кистень", callback_data='no_true17')
+    answer3 = telebot.types.InlineKeyboardButton("Томагавк", callback_data='no_true17')
+    answer4 = telebot.types.InlineKeyboardButton("Бердыш", callback_data='true17')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true17(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/17.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.''', reply_markup=create_markup_test18())
+
+
+def reaction_no_true17(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/17.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.''', reply_markup=create_markup_test18())
+
+
+def create_markup_test18():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test18')
+    markup.add(answer1)
+    return markup
+#18 вопрос
+def reaction_question18(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Восемнадцатый вопрос.
+
+В каком веке были популярны такие виды стрелкового оружия как штуцер и мушкет?""", reply_markup=create_markup_start_question18())
+
+
+def create_markup_start_question18():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("XVI - XVII", callback_data='no_true18')
+    answer2 = telebot.types.InlineKeyboardButton("XVI – XVIII", callback_data='true18')
+    answer3 = telebot.types.InlineKeyboardButton("XIV", callback_data='no_true18')
+    answer4 = telebot.types.InlineKeyboardButton("XIX", callback_data='no_true18')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true18(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/18.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.''', reply_markup=create_markup_test19())
+
+
+def reaction_no_true18(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/18.jpg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.''', reply_markup=create_markup_test19())
+
+
+def create_markup_test19():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test19')
+    markup.add(answer1)
+    return markup
+#19 вопрос
+def reaction_question19(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Девятнадцатый вопрос.
+
+В каком городе производится автомат Калашникова?""", reply_markup=create_markup_start_question19())
+
+
+def create_markup_start_question19():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Тула", callback_data='no_true19')
+    answer2 = telebot.types.InlineKeyboardButton("Ижевск", callback_data='true19')
+    answer3 = telebot.types.InlineKeyboardButton("Самара", callback_data='no_true19')
+    answer4 = telebot.types.InlineKeyboardButton("Саратов", callback_data='no_true19')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true19(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/20.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: В 1950-х годах лицензии на производство АК были переданы СССР 18 странам (главным образом, союзникам по Варшавскому договору).
+Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов''', reply_markup=create_markup_test20())
+
+
+def reaction_no_true19(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/20.png", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: В 1950-х годах лицензии на производство АК были переданы СССР 18 странам (главным образом, союзникам по Варшавскому договору).
+Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов''', reply_markup=create_markup_test20())
+
+
+def create_markup_test20():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Следующий вопрос", callback_data='test20')
+    markup.add(answer1)
+    return markup
+
+#20 вопрос
+def reaction_question20(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.send_message(chat_id=call.message.chat.id, text="""Двацатый вопрос.
+
+Какая из перечисленных стран производит собственные варианты на базе АК?""", reply_markup=create_markup_start_question20())
+
+
+def create_markup_start_question20():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    answer1 = telebot.types.InlineKeyboardButton("Казахстан", callback_data='no_true20')
+    answer2 = telebot.types.InlineKeyboardButton("Индия", callback_data='true20')
+    answer3 = telebot.types.InlineKeyboardButton("Зимбабве", callback_data='no_true20')
+    answer4 = telebot.types.InlineKeyboardButton("Америка", callback_data='no_true20')
+    markup.add(answer1, answer2, answer3, answer4)
+    return markup
+
+
+def reaction_true20(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/21.jpeg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили верно! 
+
+Ответ: В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.''', reply_markup=create_markup_end())
+
+
+def reaction_no_true20(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    photo = open("photo/21.jpeg", 'rb')
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''Вы ответили неверно! Но не расстраивайтесь. 
+
+Ответ: В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.''', reply_markup=create_markup_end())
+
+#Остальное
+def create_markup_end():
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
     answer1 = telebot.types.InlineKeyboardButton("Конец :)", callback_data='about_us')
     markup.add(answer1)
     return markup
-#Остальное
 def reaction_about_us(call):
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Создатели:
 
 Главный по пушкам @tovarishpointeresam
-Отец бота: @danp1t""",
+Главный по оружию:@RiaIII
+Главный по связи: @ster1ing
+Главный по боту: @danp1t""",
                      reply_markup=create_start_markup())
 
 def create_markup_start_question():

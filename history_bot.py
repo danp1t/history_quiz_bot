@@ -1,6 +1,6 @@
 import telebot, function
 
-bot = telebot.TeleBot("6480240193:AAFsuxAPea8LfE_3gRnwH8Eo_zeD038VNc0")
+bot = telebot.TeleBot("6743483800:AAEgeLSXH33LyvBNFhqsiqr64lZ6VWZfMpw")
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
@@ -91,6 +91,72 @@ def callback_inline(call):
                 function.reaction_true11(call)
             elif call.data == 'no_true11':
                 function.reaction_no_true11(call)
+            #12 вопрос
+            elif call.data == 'test12':
+                function.reaction_question12(call)
+            elif call.data == 'true12':
+                function.reaction_true12(call)
+            elif call.data == 'no_true12':
+                function.reaction_no_true12(call)
+            #13 вопрос
+            elif call.data == 'test13':
+                function.reaction_question13(call)
+            elif call.data == 'true13':
+                function.reaction_true13(call)
+            elif call.data == 'no_true13':
+                function.reaction_no_true13(call)
+            #14 вопрос
+            elif call.data == 'test14':
+                function.reaction_question14(call)
+            elif call.data == 'true14':
+                function.reaction_true14(call)
+            elif call.data == 'no_true14':
+                function.reaction_no_true14(call)
+            #15 вопрос
+            elif call.data == 'test15':
+                function.reaction_question15(call)
+            elif call.data == 'true15':
+                function.reaction_true15(call)
+            elif call.data == 'no_true15':
+                function.reaction_no_true15(call)
+            #16 вопрос
+            elif call.data == 'test16':
+                function.reaction_question16(call)
+            elif call.data == 'true16':
+                function.reaction_true16(call)
+            elif call.data == 'no_true16':
+                function.reaction_no_true16(call)
+            #17 вопрос
+            elif call.data == 'test17':
+                function.reaction_question17(call)
+            elif call.data == 'true17':
+                function.reaction_true17(call)
+            elif call.data == 'no_true17':
+                function.reaction_no_true17(call)
+            #18 вопрос
+            elif call.data == 'test18':
+                function.reaction_question18(call)
+            elif call.data == 'true18':
+                function.reaction_true18(call)
+            elif call.data == 'no_true18':
+                function.reaction_no_true18(call)
+            #19 вопрос
+            elif call.data == 'test19':
+                function.reaction_question19(call)
+            elif call.data == 'true19':
+                function.reaction_true19(call)
+            elif call.data == 'no_true19':
+                function.reaction_no_true19(call)
+            #20 вопрос
+            elif call.data == 'test20':
+                function.reaction_question20(call)
+            elif call.data == 'true20':
+                function.reaction_true20(call)
+            elif call.data == 'no_true20':
+                function.reaction_no_true20(call)
+
+
+            #Другое
             elif call.data == 'about_us':
                 function.reaction_about_us(call)
 
