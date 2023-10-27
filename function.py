@@ -1,6 +1,6 @@
 import telebot
 
-bot = telebot.TeleBot("")
+bot = telebot.TeleBot("6743483800:AAEgeLSXH33LyvBNFhqsiqr64lZ6VWZfMpw")
 
 def welcome(message):
         photo = open("photo/main.jpeg", 'rb')
