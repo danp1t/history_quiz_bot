@@ -1,6 +1,7 @@
 import telebot
 
-bot = telebot.TeleBot("6743483800:AAEgeLSXH33LyvBNFhqsiqr64lZ6VWZfMpw")
+bot = telebot.TeleBot("")
+data = {}
 
 def welcome(message):
         photo = open("photo/main.jpeg", 'rb')
@@ -13,6 +14,9 @@ def reaction_on_text(message):
 
 
 def reaction_lets_start(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user] = [0, 0, 0]
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     bot.send_message(chat_id=call.message.chat.id, text="""Первый вопрос будет касаться военной техники.
 Данное орудие предназначено для навесной стрельбы по открытым целям, поэтому на боевой позиции у этой пушки ствол поднят вверх. Как называется это орудие?
@@ -21,18 +25,28 @@ def reaction_lets_start(call):
                     reply_markup=create_markup_start_question())
 
 def reaction_true1(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/1.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Мортира — артиллерийское орудие с коротким стволом для навесной стрельбы. В Россию термин «мортира» проник при Петре I, когда артиллерийские орудия разделили на длинноствольные (пушки), средние (гаубицы) и короткоствольные (мортиры).</i>''', reply_markup=create_markup_test2(), parse_mode='html')
+Ответ: <i>Мортира — артиллерийское орудие с коротким стволом для навесной стрельбы. В Россию термин «мортира» проник при Петре I, когда артиллерийские орудия разделили на длинноствольные (пушки), средние (гаубицы) и короткоствольные (мортиры).</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test2(), parse_mode='html')
 
 def reaction_no_true1(call):
+    global data, user
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/1.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Мортира — артиллерийское орудие с коротким стволом для навесной стрельбы. В Россию термин «мортира» проник при Петре I, когда артиллерийские орудия разделили на длинноствольные (пушки), средние (гаубицы) и короткоствольные (мортиры).</i>''', reply_markup=create_markup_test2(), parse_mode='html')
+Ответ: <i>Мортира — артиллерийское орудие с коротким стволом для навесной стрельбы. В Россию термин «мортира» проник при Петре I, когда артиллерийские орудия разделили на длинноствольные (пушки), средние (гаубицы) и короткоствольные (мортиры).</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test2(), parse_mode='html')
 
 def create_markup_test2():
     markup = telebot.types.InlineKeyboardMarkup(row_width=1)
@@ -58,18 +72,28 @@ def create_markup_start_question2():
     return markup
 
 def reaction_true2(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/2.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Железные ядра весили примерно 27 кг.</i>''', reply_markup=create_markup_test3(), parse_mode='html')
+Ответ: <i>Железные ядра весили примерно 27 кг.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test3(), parse_mode='html')
 
 def reaction_no_true2(call):
+    global data, user
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/2.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Железные ядра весили примерно 27 кг.</i>''', reply_markup=create_markup_test3(), parse_mode='html')
+Ответ: <i>Железные ядра весили примерно 27 кг.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test3(), parse_mode='html')
 
 def create_markup_test3():
     markup = telebot.types.InlineKeyboardMarkup(row_width=1)
@@ -97,19 +121,29 @@ def create_markup_start_question3():
 
 
 def reaction_true3(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/3.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Карл Смелый последний герцог Бургундии из династии Валуа, сын герцога Филиппа Доброго, говорил: “Пушки – ключ к городу”.</i>''', reply_markup=create_markup_test4(), parse_mode='html')
+Ответ: <i>Карл Смелый последний герцог Бургундии из династии Валуа, сын герцога Филиппа Доброго, говорил: “Пушки – ключ к городу”.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test4(), parse_mode='html')
 
 
 def reaction_no_true3(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/3.jpg", 'rb')
     bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
 
-Ответ: <i>Карл Смелый последний герцог Бургундии из династии Валуа, сын герцога Филиппа Доброго, говорил: “Пушки – ключ к городу”.</i>''', reply_markup=create_markup_test4(), parse_mode='html')
+Ответ: <i>Карл Смелый последний герцог Бургундии из династии Валуа, сын герцога Филиппа Доброго, говорил: “Пушки – ключ к городу”.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test4(), parse_mode='html')
 
 
 def create_markup_test4():
@@ -138,19 +172,29 @@ def create_markup_start_question4():
 
 
 def reaction_true4(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/4.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Орудие использовали как береговое, так и осадное. Таким образом его использовали для поражения всех вышеперечисленных целей.</i>''', reply_markup=create_markup_test5(), parse_mode='html')
+Ответ: <i>Орудие использовали как береговое, так и осадное. Таким образом его использовали для поражения всех вышеперечисленных целей.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test5(), parse_mode='html')
 
 
 def reaction_no_true4(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/4.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Орудие использовали как береговое, так и осадное. Таким образом его использовали для поражения всех вышеперечисленных целей.</i>''', reply_markup=create_markup_test5(), parse_mode='html')
+Ответ: <i>Орудие использовали как береговое, так и осадное. Таким образом его использовали для поражения всех вышеперечисленных целей.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test5(), parse_mode='html')
 
 
 def create_markup_test5():
@@ -179,19 +223,29 @@ def create_markup_start_question5():
 
 
 def reaction_true5(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/5.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>В то время технологические ограничения не позволяли мастерам идеально подгонять снаряды под диаметр ствола. Иногда из-за этого несовершенства зазор между ядром и стенками ствола доходил до нескольких миллиметров, поэтому мастера делали стенки ствола толще, чтобы повысить прочность орудия.</i>''', reply_markup=create_markup_test6(), parse_mode='html')
+Ответ: <i>В то время технологические ограничения не позволяли мастерам идеально подгонять снаряды под диаметр ствола. Иногда из-за этого несовершенства зазор между ядром и стенками ствола доходил до нескольких миллиметров, поэтому мастера делали стенки ствола толще, чтобы повысить прочность орудия.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test6(), parse_mode='html')
 
 
 def reaction_no_true5(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/5.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>В то время технологические ограничения не позволяли мастерам идеально подгонять снаряды под диаметр ствола. Иногда из-за этого несовершенства зазор между ядром и стенками ствола доходил до нескольких миллиметров, поэтому мастера делали стенки ствола толще, чтобы повысить прочность орудия.</i>''', reply_markup=create_markup_test6(), parse_mode='html')
+Ответ: <i>В то время технологические ограничения не позволяли мастерам идеально подгонять снаряды под диаметр ствола. Иногда из-за этого несовершенства зазор между ядром и стенками ствола доходил до нескольких миллиметров, поэтому мастера делали стенки ствола толще, чтобы повысить прочность орудия.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test6(), parse_mode='html')
 
 
 def create_markup_test6():
@@ -220,19 +274,29 @@ def create_markup_start_question6():
 
 
 def reaction_true6(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/6.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Мастер Андрей Чохов отлил пушку «Инрог», мортиру «Егун», а также под его надзором отливалась мортира «Самозванец». Все вышеперечисленные орудия представлены в музее.</i>''', reply_markup=create_markup_test7(), parse_mode='html')
+Ответ: <i>Мастер Андрей Чохов отлил пушку «Инрог», мортиру «Егун», а также под его надзором отливалась мортира «Самозванец». Все вышеперечисленные орудия представлены в музее.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test7(), parse_mode='html')
 
 
 def reaction_no_true6(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/6.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Мастер Андрей Чохов отлил пушку «Инрог», мортиру «Егун», а также под его надзором отливалась мортира «Самозванец». Все вышеперечисленные орудия представлены в музее.</i>''', reply_markup=create_markup_test7(), parse_mode='html')
+Ответ: <i>Мастер Андрей Чохов отлил пушку «Инрог», мортиру «Егун», а также под его надзором отливалась мортира «Самозванец». Все вышеперечисленные орудия представлены в музее.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test7(), parse_mode='html')
 
 
 def create_markup_test7():
@@ -261,19 +325,29 @@ def create_markup_start_question7():
 
 
 def reaction_true7(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/7.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>В 1762 году проводились испытания 25-ти ствольной мортирной батареи, резолюция которых звучала так: "сии инвестиции в настоящем употреблении полезны быть не могут".</i>''', reply_markup=create_markup_test8(), parse_mode='html')
+Ответ: <i>В 1762 году проводились испытания 25-ти ствольной мортирной батареи, резолюция которых звучала так: "сии инвестиции в настоящем употреблении полезны быть не могут".</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test8(), parse_mode='html')
 
 
 def reaction_no_true7(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/7.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>В 1762 году проводились испытания 25-ти ствольной мортирной батареи, резолюция которых звучала так: "сии инвестиции в настоящем употреблении полезны быть не могут".</i>''', reply_markup=create_markup_test8(), parse_mode='html')
+Ответ: <i>В 1762 году проводились испытания 25-ти ствольной мортирной батареи, резолюция которых звучала так: "сии инвестиции в настоящем употреблении полезны быть не могут".</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test8(), parse_mode='html')
 
 
 def create_markup_test8():
@@ -302,19 +376,29 @@ def create_markup_start_question8():
 
 
 def reaction_true8(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/8.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Полевая пушка образца 1867 г, сконструированная Н.В. Маиевсским, стала первым русским артиллерийским орудием с нарезным стволом.</i>''', reply_markup=create_markup_test9(), parse_mode='html')
+Ответ: <i>Полевая пушка образца 1867 г, сконструированная Н.В. Маиевсским, стала первым русским артиллерийским орудием с нарезным стволом.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test9(), parse_mode='html')
 
 
 def reaction_no_true8(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/8.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Полевая пушка образца 1867 г, сконструированная Н.В. Маиевсским, стала первым русским артиллерийским орудием с нарезным стволом.</i>''', reply_markup=create_markup_test9(), parse_mode='html')
+Ответ: <i>Полевая пушка образца 1867 г, сконструированная Н.В. Маиевсским, стала первым русским артиллерийским орудием с нарезным стволом.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test9(), parse_mode='html')
 
 
 def create_markup_test9():
@@ -343,19 +427,29 @@ def create_markup_start_question9():
 
 
 def reaction_true9(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/9.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Придание вращения снаряду вокруг его продольной оси во время стрельбы для стабилизации снаряда в продольном направлении за счет сохранения момента импульса, улучшает его аэродинамическую устойчивость и точность по сравнению с гладкоствольными конструкциями</i>''', reply_markup=create_markup_test10(), parse_mode='html')
+Ответ: <i>Придание вращения снаряду вокруг его продольной оси во время стрельбы для стабилизации снаряда в продольном направлении за счет сохранения момента импульса, улучшает его аэродинамическую устойчивость и точность по сравнению с гладкоствольными конструкциями</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test10(), parse_mode='html')
 
 
 def reaction_no_true9(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/9.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Придание вращения снаряду вокруг его продольной оси во время стрельбы для стабилизации снаряда в продольном направлении за счет сохранения момента импульса, улучшает его аэродинамическую устойчивость и точность по сравнению с гладкоствольными конструкциями</i>''', reply_markup=create_markup_test10(), parse_mode='html')
+Ответ: <i>Придание вращения снаряду вокруг его продольной оси во время стрельбы для стабилизации снаряда в продольном направлении за счет сохранения момента импульса, улучшает его аэродинамическую устойчивость и точность по сравнению с гладкоствольными конструкциями</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test10(), parse_mode='html')
 
 
 def create_markup_test10():
@@ -383,19 +477,29 @@ def create_markup_start_question10():
 
 
 def reaction_true10(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/10.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Немецких войсках советские дивизионки называли «ратш-бум» — звук пролетающего со сверхзвуковой скоростью снаряда был слышен чуть раньше, чем долетал звук выстрела.</i>''', reply_markup=create_markup_test11(), parse_mode='html')
+Ответ: <i>Немецких войсках советские дивизионки называли «ратш-бум» — звук пролетающего со сверхзвуковой скоростью снаряда был слышен чуть раньше, чем долетал звук выстрела.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test11(), parse_mode='html')
 
 
 def reaction_no_true10(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/10.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Немецких войсках советские дивизионки называли «ратш-бум» — звук пролетающего со сверхзвуковой скоростью снаряда был слышен чуть раньше, чем долетал звук выстрела.</i>''', reply_markup=create_markup_test11(), parse_mode='html')
+Ответ: <i>Немецких войсках советские дивизионки называли «ратш-бум» — звук пролетающего со сверхзвуковой скоростью снаряда был слышен чуть раньше, чем долетал звук выстрела.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test11(), parse_mode='html')
 
 
 def create_markup_test11():
@@ -424,19 +528,29 @@ def create_markup_start_question11():
 
 
 def reaction_true11(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/11.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Алексей Михайлович подарил молодому Петру «Потешную» пушку. Будущий император активно применял её в своих играх с потешными полками.</i>''', reply_markup=create_markup_test12(), parse_mode='html')
+Ответ: <i>Алексей Михайлович подарил молодому Петру «Потешную» пушку. Будущий император активно применял её в своих играх с потешными полками.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test12(), parse_mode='html')
 
 
 def reaction_no_true11(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/11.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Алексей Михайлович подарил молодому Петру «Потешную» пушку. Будущий император активно применял её в своих играх с потешными полками.</i>''', reply_markup=create_markup_test12(), parse_mode='html')
+Ответ: <i>Алексей Михайлович подарил молодому Петру «Потешную» пушку. Будущий император активно применял её в своих играх с потешными полками.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test12(), parse_mode='html')
 
 
 def create_markup_test12():
@@ -465,19 +579,29 @@ def create_markup_start_question12():
 
 
 def reaction_true12(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/12.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио.</i>''', reply_markup=create_markup_test13(), parse_mode='html')
+Ответ: <i>7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test13(), parse_mode='html')
 
 
 def reaction_no_true12(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/12.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио.</i>''', reply_markup=create_markup_test13(), parse_mode='html')
+Ответ: <i>7 мая 1895 года Александр Попов прочел в Санкт-Петербургском университете лекцию «Об отношении металлических порошков к электрическим колебаниям» и продемонстрировал тот самый революционный прибор, который мог передавать сигналы без проводов. Этот день стал днем рождения радио.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test13(), parse_mode='html')
 
 
 def create_markup_test13():
@@ -506,19 +630,29 @@ def create_markup_start_question13():
 
 
 def reaction_true13(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/13.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.</i>''', reply_markup=create_markup_test14(), parse_mode='html')
+Ответ: <i>Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test14(), parse_mode='html')
 
 
 def reaction_no_true13(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/13.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.</i>''', reply_markup=create_markup_test14(), parse_mode='html')
+Ответ: <i>Регулярное радиовещание началось 23 ноября 1924 года, когда в эфир был передан первый номер радиогазеты. В программах вещания значительное место занимали трансляции партийных съездов, конференций, передачи для детей, образовательные программы.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test14(), parse_mode='html')
 
 
 def create_markup_test14():
@@ -547,19 +681,29 @@ def create_markup_start_question14():
 
 
 def reaction_true14(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/14.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)</i>''', reply_markup=create_markup_test15(), parse_mode='html')
+Ответ: <i>Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test15(), parse_mode='html')
 
 
 def reaction_no_true14(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/14.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)</i>''', reply_markup=create_markup_test15(), parse_mode='html')
+Ответ: <i>Пересыпкин во время Великой Отечественной войны обеспечивал управление войсками связи и обеспечение связью действующей армии. Лично выезжал на фронт 24 раза (некоторые его командировки на фронт превышали 2-3 месяца)</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test15(), parse_mode='html')
 
 
 def create_markup_test15():
@@ -587,19 +731,29 @@ def create_markup_start_question15():
 
 
 def reaction_true15(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/15.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.</i>''', reply_markup=create_markup_test16(), parse_mode='html')
+Ответ: <i>1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test16(), parse_mode='html')
 
 
 def reaction_no_true15(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/15.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.</i>''', reply_markup=create_markup_test16(), parse_mode='html')
+Ответ: <i>1000 км. Использовался в штабах флота, на крейсерских подводных лодках и кораблях 1-го ранга. Имел дальность до 500 км в телефонном режиме.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test16(), parse_mode='html')
 
 
 def create_markup_test16():
@@ -628,19 +782,29 @@ def create_markup_start_question16():
 
 
 def reaction_true16(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/16.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады</i>''', reply_markup=create_markup_test17(), parse_mode='html')
+Ответ: <i>Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test17(), parse_mode='html')
 
 
 def reaction_no_true16(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/16.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады</i>''', reply_markup=create_markup_test17(), parse_mode='html')
+Ответ: <i>Прокладка морского кабеля по дну Ладожского озера. Линия связи была проложена 29 октября 1941 г., вступила в строй на следующий день и бесперебойно работала все 900 дней блокады</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test17(), parse_mode='html')
 
 
 def create_markup_test17():
@@ -669,19 +833,29 @@ def create_markup_start_question17():
 
 
 def reaction_true17(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/17.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.</i>''', reply_markup=create_markup_test18(), parse_mode='html')
+Ответ: <i>По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test18(), parse_mode='html')
 
 
 def reaction_no_true17(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/17.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.</i>''', reply_markup=create_markup_test18(), parse_mode='html')
+Ответ: <i>По сказаниям иностранцев, вооружённые саблями и бердышами военнослужащие русского войска, или «бердышники», считались лучшей пехотой. Практическим аналогом бердыша был западноевропейский бардуций (barducium) и алебарда.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test18(), parse_mode='html')
 
 
 def create_markup_test18():
@@ -708,19 +882,29 @@ def create_markup_start_question18():
 
 
 def reaction_true18(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/18.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.</i>''', reply_markup=create_markup_test19(), parse_mode='html')
+Ответ: <i>C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test19(), parse_mode='html')
 
 
 def reaction_no_true18(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/18.jpg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.</i>''', reply_markup=create_markup_test19(), parse_mode='html')
+Ответ: <i>C удешевлением штуцера ближе к концу XVIII века стал появляться и на вооружении лёгкой пехоты (стрелков, егерей) многих европейских армий, действующей в рассыпном строю и редко вступающей в штыковой бой.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test19(), parse_mode='html')
 
 
 def create_markup_test19():
@@ -747,21 +931,31 @@ def create_markup_start_question19():
 
 
 def reaction_true19(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/20.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b>
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b>
 
 Ответ: <i>В 1950-х годах лицензии на производство АК были переданы СССР 18 странам (главным образом, союзникам по Варшавскому договору).
-Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов</i>''', reply_markup=create_markup_test20(), parse_mode='html')
+Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test20(), parse_mode='html')
 
 
 def reaction_no_true19(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/20.png", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
 Ответ: <i>В 1950-х годах лицензии на производство АК были переданы СССР 18 странам (главным образом, союзникам по Варшавскому договору).
-Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов</i>''', reply_markup=create_markup_test20(), parse_mode='html')
+Особенно активно выпускают подобия автомата Калашникова польское предприятие «Бумар» и болгарская фирма «Арсенал», которая в настоящее время открыла филиал в США и наладила там выпуск автоматов</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_test20(), parse_mode='html')
 
 
 def create_markup_test20():
@@ -789,19 +983,29 @@ def create_markup_start_question20():
 
 
 def reaction_true20(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 1
+    data[user][1] += 0
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/21.jpeg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно!</b> 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили верно! {0}/{1}</b> 
 
-Ответ: <i>В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.</i>''', reply_markup=create_markup_end(), parse_mode='html')
+Ответ: <i>В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_end(), parse_mode='html')
 
 
 def reaction_no_true20(call):
+    global data
+    user = str(call.message.chat.id)
+    data[user][0] += 0
+    data[user][1] += 1
+    data[user][2] += 1
     bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     photo = open("photo/21.jpeg", 'rb')
-    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно!</b> Но не расстраивайтесь. 
+    bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption='''<b>Вы ответили неверно! {0}/{1}</b> Но не расстраивайтесь. 
 
-Ответ: <i>В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.</i>''', reply_markup=create_markup_end(), parse_mode='html')
+Ответ: <i>В Индии стартовал долгожданный проект по производству автоматов Калашникова АК-203. О начале выпуска АК-203 на заводе Korwa Ordnance Factory в Амети в штате Уттар-Прадеш 17 января сообщила пресс-служба "Рособоронэкспорта". По данным источника, в производственных планах совместного предприятия Indo-Russian Rifles Private Limited заложена 100-процентная локализация производства автоматов АК-203 в Индии.</i>'''.format(data[user][0], data[user][2]), reply_markup=create_markup_end(), parse_mode='html')
 
 #Остальное
 def create_markup_end():
